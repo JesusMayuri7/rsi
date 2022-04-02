@@ -1,0 +1,28 @@
+^D:\SALUDILO\SISTEMA\SALUD_ILO\BUILD\WINDOWS\CMAKEFILES\FCDE80101768D0A524C35EB2E3825C4A\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\flutter PROJECT_DIR=D:\SALUDILO\Sistema\salud_ilo FLUTTER_ROOT=C:\flutter FLUTTER_EPHEMERAL_DIR=D:\SALUDILO\Sistema\salud_ilo\windows\flutter\ephemeral PROJECT_DIR=D:\SALUDILO\Sistema\salud_ilo FLUTTER_TARGET=D:\SALUDILO\Sistema\salud_ilo\lib\main.dart DART_DEFINES=Zmx1dHRlci5pbnNwZWN0b3Iuc3RydWN0dXJlZEVycm9ycz10cnVl,RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=D:\SALUDILO\Sistema\salud_ilo\.dart_tool\package_config.json C:/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\SALUDILO\SISTEMA\SALUD_ILO\BUILD\WINDOWS\CMAKEFILES\D29F254E32B142AD4BE81C62CF287CA4\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\SALUDILO\SISTEMA\SALUD_ILO\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/SALUDILO/Sistema/salud_ilo/windows -BD:/SALUDILO/Sistema/salud_ilo/build/windows --check-stamp-file D:/SALUDILO/Sistema/salud_ilo/build/windows/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
