@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:salud_ilo/app/modules/home/navigation_home.dart';
 
 import 'presenter/constancia/bloc/resumen_cubit.dart';
-import 'presenter/constancia/constancia_page.dart';
 
 class HomeModule extends Module {
   @override

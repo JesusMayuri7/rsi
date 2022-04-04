@@ -1,13 +1,13 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:salud_ilo/app/modules/home/presenter/conceptos/conceptos_page.dart';
-import 'package:salud_ilo/app/modules/home/presenter/importar/import_page.dart';
+import 'package:salud_ilo/app/modules/home/presenter/importar/bloc/consolidado/consolidado_cubit.dart';
+import 'package:salud_ilo/app/modules/home/presenter/importar/import_main_page.dart';
 
 import 'modules/home/presenter/conceptos/cubit/conceptos_cubit.dart';
 import 'modules/home/presenter/constancia/bloc/resumen_cubit.dart';
 import 'modules/home/presenter/constancia/constancia_page.dart';
-import 'modules/home/presenter/importar/bloc/import_bloc.dart';
+import 'modules/home/presenter/importar/bloc/import/import_bloc.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -38,11 +38,15 @@ class _AppWidgetState extends State<AppWidget> {
               BlocProvider(create: (context) => ResumenCubit()),
               BlocProvider(create: (context) => ImportBloc()),
               BlocProvider(
+                  create: (context) =>
+                      ConsolidadoCubit(BlocProvider.of<ImportBloc>(context))
+                        ..getConsolidado()),
+              BlocProvider(
                   create: (context) => ConceptosCubit()..getConceptos()),
             ],
             child: NavigationBody(
               index: _curretIndex,
-              children: [ConstanciaPage(), ImportPage(), ConceptosPage()],
+              children: [ConstanciaPage(), ImportMainPage(), ConceptosPage()],
             ),
           ),
           pane: NavigationPane(

@@ -1,14 +1,12 @@
 import 'dart:io';
 
-import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:salud_ilo/app/modules/home/domain/concepto_entity.dart';
 import 'package:salud_ilo/app/modules/home/domain/planilla_detalle_entity.dart';
 import 'package:salud_ilo/app/modules/home/domain/planilla_entity.dart';
 import 'package:salud_ilo/app/modules/home/domain/resumenEntity.dart';
 import 'package:salud_ilo/app/modules/home/domain/grid_entity.dart';
+import 'package:salud_ilo/app/modules/home/domain/consolidado_entity.dart';
 import 'package:salud_ilo/app/modules/home/presenter/conceptos/cubit/conceptos_cubit.dart';
 //import 'package:sqlite3/sqlite3.dart';
 import 'package:sqflite_common/sqlite_api.dart';
@@ -140,8 +138,9 @@ class DBProvider {
 
   // Eliminar registros
   Future<int> deletePlanillaByAnioMes(int anio, int mes) async {
+    print(anio.toString() + ' -  ' + mes.toString());
     final db = await database;
-    final planilla = await db.delete('planilla',
+    await db.delete('planilla',
         where: 'anio = ? AND mes= ?', whereArgs: [anio, mes]);
 
     final detalle = await db.delete('planilla_detalle',
@@ -156,6 +155,17 @@ class DBProvider {
         ? res.map((c) => ConceptoEntity.fromMap(c)).toList()
         : [];
     return list;
+  }
+
+  Future<List<ConsolidadoEntity>> getConsolidadoByAnioAndMes() async {
+    final db = await database;
+    final res = await db.rawQuery(queryResumenByAnioAndMes());
+    List<ConsolidadoEntity> resumenGridEntityList = res.isNotEmpty
+        ? res.map((c) => ConsolidadoEntity.fromMap(c)).toList()
+        : [];
+    return resumenGridEntityList;
+
+    // error en la C
   }
 
   Future<ResumenEntity> getPlanillaDetalleByAnioAndDni(
@@ -376,4 +386,58 @@ SELECT p.anio,
 			WHERE SUBSTR(pd.codigo,1,2)='C3' AND (p.anio BETWEEN $anioDesde and $anioA) and p.libEle = '$dni' 
       GROUP BY p.anio ) as t ORDER BY t.anio     
  ''';
+}
+
+String queryResumenByAnioAndMes() {
+  return '''select t.* from (
+SELECT pd.anio,'Ingresos' as tipo,
+round(SUM(case when pd.mes=1 then monto else 0 end),2) as 'enero',
+round(SUM(case when pd.mes=2 then monto else 0 end),2) 'febrero',
+round(SUM(case when pd.mes=3 then monto else 0 end),2) 'marzo',
+round(SUM(case when pd.mes=4 then monto else 0 end),2) 'abril',
+round(SUM(case when pd.mes=5 then monto else 0 end),2) 'mayo',
+round(SUM(case when pd.mes=6 then monto else 0 end),2) 'junio',
+round(SUM(case when pd.mes=7 then monto else 0 end),2) 'julio',
+round(SUM(case when pd.mes=8 then monto else 0 end),2) 'agosto',
+round(SUM(case when pd.mes=9 then monto else 0 end),2) 'setiembre',
+round(SUM(case when pd.mes=10 then monto else 0 end),2) 'octubre',
+round(SUM(case when pd.mes=11 then monto else 0 end),2) 'noviembre',
+round(SUM(case when pd.mes=12 then monto else 0 end),2) 'diciembre'
+FROM planilla_detalle pd
+where SUBSTR(pd.codigo,1,2)='C1'
+GROUP BY pd.anio
+UNION ALL
+SELECT pd.anio,'Descuentos',
+round(SUM(case when pd.mes=1 then monto else 0 end),2) as 'enero',
+round(SUM(case when pd.mes=2 then monto else 0 end),2) 'febrero',
+round(SUM(case when pd.mes=3 then monto else 0 end),2) 'marzo',
+round(SUM(case when pd.mes=4 then monto else 0 end),2) 'abril',
+round(SUM(case when pd.mes=5 then monto else 0 end),2) 'mayo',
+round(SUM(case when pd.mes=6 then monto else 0 end),2) 'junio',
+round(SUM(case when pd.mes=7 then monto else 0 end),2) 'julio',
+round(SUM(case when pd.mes=8 then monto else 0 end),2) 'agosto',
+round(SUM(case when pd.mes=9 then monto else 0 end),2) 'setiembre',
+round(SUM(case when pd.mes=10 then monto else 0 end),2) 'octubre',
+round(SUM(case when pd.mes=11 then monto else 0 end),2) 'noviembre',
+round(SUM(case when pd.mes=12 then monto else 0 end),2) 'diciembre'
+FROM planilla_detalle pd
+where SUBSTR(pd.codigo,1,2)='C2'
+GROUP BY pd.anio
+UNION ALL
+SELECT pd.anio,'Aportes',
+round(SUM(case when pd.mes=1 then monto else 0 end),2) 'enero',
+round(SUM(case when pd.mes=2 then monto else 0 end),2) 'febrero',
+round(SUM(case when pd.mes=3 then monto else 0 end),2) 'marzo',
+round(SUM(case when pd.mes=4 then monto else 0 end),2) 'abril',
+round(SUM(case when pd.mes=5 then monto else 0 end),2) 'mayo',
+round(SUM(case when pd.mes=6 then monto else 0 end),2) 'junio',
+round(SUM(case when pd.mes=7 then monto else 0 end),2) 'julio',
+round(SUM(case when pd.mes=8 then monto else 0 end),2) 'agosto',
+round(SUM(case when pd.mes=9 then monto else 0 end),2) 'setiembre',
+round(SUM(case when pd.mes=10 then monto else 0 end),2) 'octubre',
+round(SUM(case when pd.mes=11 then monto else 0 end),2) 'noviembre',
+round(SUM(case when pd.mes=12 then monto else 0 end),2) 'diciembre'
+FROM planilla_detalle pd
+where SUBSTR(pd.codigo,1,2)='C3'
+group By pd.anio) as t ORDER BY t.anio ASC''';
 }

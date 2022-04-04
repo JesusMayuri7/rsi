@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import 'bloc/import_bloc.dart';
+import 'bloc/import/import_bloc.dart';
 
 class ImportPage extends StatefulWidget {
   ImportPage({Key? key}) : super(key: key);
@@ -179,7 +179,7 @@ class _ImportPageState extends State<ImportPage> {
                                   ? null
                                   : BlocProvider.of<ImportBloc>(context,
                                           listen: false)
-                                      .deletePLanillaByAnioMes(
+                                      .deletePLanillaByAnioMesState(
                                           int.parse(anioSelected.text),
                                           mes + 1);
                             }
