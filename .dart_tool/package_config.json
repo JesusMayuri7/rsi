@@ -183,7 +183,7 @@
     },
     {
       "name": "flutter_modular",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_modular-4.4.1",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_modular-4.5.1+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -267,7 +267,7 @@
     },
     {
       "name": "modular_core",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/modular_core-1.2.1",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/modular_core-1.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -542,7 +542,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-04-09T20:01:39.275424Z",
+  "generated": "2022-04-10T15:37:25.590030Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }

@@ -4,6 +4,7 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:salud_ilo/app/modules/home/navigation_home.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart' as flutter_acrylic;
 
@@ -29,8 +30,8 @@ void main() async {
     await flutter_acrylic.Window.initialize();
   }
   //await di.init();
-  //runApp(ModularApp(module: AppModule(), child: AppWidget()));
-  runApp(AppWidget());
+  runApp(ModularApp(module: AppModule(), child: AppWidget()));
+  //runApp(NavigationHome());
 
   if (isDesktop) {
     doWhenWindowReady(() {
