@@ -19,9 +19,9 @@ class HeaderPage extends StatefulWidget {
 class _HeaderPageState extends State<HeaderPage> {
   //var win = appWindow;
 
-  TextEditingController dni = TextEditingController()..text = '40666038';
-  TextEditingController anioDesde = TextEditingController()..text = '2019';
-  TextEditingController anioA = TextEditingController()..text = '2019';
+  TextEditingController dni = TextEditingController()..text = '';
+  TextEditingController anioDesde = TextEditingController()..text = '';
+  TextEditingController anioA = TextEditingController()..text = '';
 
   var maskFormatter = MaskTextInputFormatter(
       mask: '####',
@@ -44,7 +44,7 @@ class _HeaderPageState extends State<HeaderPage> {
       Container(
           width: 60,
           child: TextBox(
-            enabled: false,
+            //enabled: false,
             inputFormatters: <TextInputFormatter>[maskFormatter],
             controller: anioDesde,
             placeholder: 'Año',
@@ -57,7 +57,7 @@ class _HeaderPageState extends State<HeaderPage> {
       Container(
           width: 60,
           child: TextBox(
-            enabled: false,
+            //enabled: false,
             inputFormatters: <TextInputFormatter>[maskFormatter],
             controller: anioA,
             placeholder: 'Año',
@@ -111,7 +111,7 @@ class _HeaderPageState extends State<HeaderPage> {
         child: Button(
             onPressed: () {
               BlocProvider.of<ResumenCubit>(context, listen: false)
-                  .printConstancia();
+                  .exportConstancia();
             },
             child: const Text('Exportar')),
       ),

@@ -19,7 +19,7 @@ class _ConstanciaPageState extends State<ConstanciaPage> {
 
   @override
   Widget build(BuildContext context) {
-    appWindow.title = 'Generar Constancia';
+    appWindow.title = 'Buscar Planilla';
 
     return Padding(
       padding: const EdgeInsets.only(left: 50, right: 50, top: 10),

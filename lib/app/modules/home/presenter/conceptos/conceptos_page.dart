@@ -1,4 +1,5 @@
 //import 'package:fluent_ui/fluent_ui.dart' as fluent_ui;
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:collection/collection.dart';
 import 'package:excel/excel.dart';
 import 'package:fluent_ui/fluent_ui.dart' as f;
@@ -21,6 +22,7 @@ class ConceptosPage extends StatefulWidget {
 class _GridPageState extends State<ConceptosPage> {
   @override
   Widget build(BuildContext context) {
+    appWindow.title = 'Conceptos';
     return Material(child: _createDataTable());
   }
 
